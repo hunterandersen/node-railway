@@ -1,11 +1,12 @@
 const express = require("express");
 const cors = require("cors");
-const mainAPIRoute = require("./routes/api.route");
+const {router} = require("./routes/api.route");
 
 const server = express();
 
 server.use(cors());
+server.use("/", router);
 
-server.listen(() => {
-    console.log("Server started on port 5001");
-}, 5001);
+server.listen(3005, () => {
+    console.log("Server started on port 3005");
+});

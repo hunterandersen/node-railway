@@ -1,12 +1,22 @@
 const express = require("express");
-
+const {query} = require("../db/connection");
 const router = express.Router();
 
-router.get("/", (req, res, next) => {
-    console.log(req.url);
-    console.log(req.params);
+router.get("/", async (req, res, next) => {
+  console.log(req.url);
 
-    res.end("Good luck");
+  try {
+    const queryRes = await query(`SELECT * FROM products LIMIT 15;`);
+    //console.log(queryRes);
+    res.status(200).send(queryRes);
+  } catch (err) {
+    console.error(err);
+    res.end(err);
+  }
 });
 
-export default router;
+module.exports = {
+    router
+}
+
+//export default router;
