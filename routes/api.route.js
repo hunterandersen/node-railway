@@ -1,5 +1,5 @@
 const express = require("express");
-const {query} = require("../db/connection");
+const { query } = require("../db/connection");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {

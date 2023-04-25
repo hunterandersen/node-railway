@@ -2,14 +2,18 @@ const mysql = require("mysql2");
 require("dotenv").config();
 
 const connectionConfig = {
-  database: process.env.MYSQLDATABASE || "",
+  database: process.env.MYSQLDATABASE || "testing",
   host: process.env.MYSQLHOST || "localhost",
   password: process.env.MYSQLPASSWORD || "password",
-  port: process.env.MYSQLPORT || 5000,
+  port: process.env.MYSQLPORT || 3306,
   user: process.env.MYSQLUSER || "root",
 };
 
 const dbConnection = mysql.createPool(connectionConfig);
+
+if (dbConnection){
+  console.log("Connected to DB");
+}
 
 const query = (queryString, vals) => {
   return new Promise((resolve, reject) => {
