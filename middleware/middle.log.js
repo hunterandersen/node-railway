@@ -10,11 +10,11 @@ const { query } = require("../db/connection");
 
 const logger = async (req, res, next) => {
   //Alternatively, you could let SQL auto generate a date time when the row is inserted
-  const time = new Date().toLocaleString();
+  const time = new Date().toISOString().slice(0, 19).replace('T', ' ');
   const { url, method } = req;
 
   const values = {
-    datetime: time,
+    logtime: time,
     url: url,
     method: method,
   };
